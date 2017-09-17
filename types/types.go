@@ -13,6 +13,7 @@ type ForkConfiguration struct {
 	Fork        Repo
 	Marker      Marker
 	NoCheckFork bool
+	Disable     bool
 }
 
 // Repo Repository model.

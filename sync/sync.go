@@ -25,9 +25,11 @@ The repository [{{ .Owner }}/{{ .Name }}](https://github.com/{{ .Owner }}/{{ .Na
 // Process synchronize forks by making Pull Request.
 func Process(ctx context.Context, client *github.Client, configs *types.Configuration, dryRun bool, verbose bool) error {
 	for _, conf := range configs.Forks {
-		err := processOneRepository(ctx, client, conf, dryRun, verbose)
-		if err != nil {
-			return err
+		if !conf.Disable {
+			err := processOneRepository(ctx, client, conf, dryRun, verbose)
+			if err != nil {
+				return err
+			}
 		}
 	}
 	return nil

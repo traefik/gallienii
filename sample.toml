@@ -1,5 +1,6 @@
 [[repository]]
   NoCheckFork = false
+  Disable = false
   [repository.Base]
     Owner = "torvalds"
     Name = "linux"
@@ -14,6 +15,7 @@
 
 [[repository]]
   NoCheckFork = true
+  Disable = false
   [repository.Base]
     Owner = "moby"
     Name = "moby"
@@ -28,6 +30,7 @@
 
 [[repository]]
   NoCheckFork = false
+  Disable = false
   [repository.Base]
     Owner = "kubernetes"
     Name = "kubernetes"
@@ -42,6 +45,7 @@
 
 [[repository]]
   NoCheckFork = false
+  Disable = false
   [repository.Base]
     Owner = "golang"
     Name = "go"
