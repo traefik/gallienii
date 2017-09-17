@@ -1,0 +1,55 @@
+[[repository]]
+  NoCheckFork = false
+  [repository.Base]
+    Owner = "torvalds"
+    Name = "linux"
+    Branch = "master"
+  [repository.Fork]
+    Owner = "login"
+    Name = "linux"
+    Branch = "master"
+  [repository.Marker]
+    NeedResolveConflicts = "human/need-resolve-conflicts"
+    ByBot = "bot/upstream-sync"
+
+[[repository]]
+  NoCheckFork = true
+  [repository.Base]
+    Owner = "moby"
+    Name = "moby"
+    Branch = "master"
+  [repository.Fork]
+    Owner = "login"
+    Name = "moby"
+    Branch = "master"
+  [repository.Marker]
+    NeedResolveConflicts = "human/need-resolve-conflicts"
+    ByBot = "bot/upstream-sync"
+
+[[repository]]
+  NoCheckFork = false
+  [repository.Base]
+    Owner = "kubernetes"
+    Name = "kubernetes"
+    Branch = "master"
+  [repository.Fork]
+    Owner = "login"
+    Name = "kubernetes"
+    Branch = "master"
+  [repository.Marker]
+    NeedResolveConflicts = "human/need-resolve-conflicts"
+    ByBot = ""
+
+[[repository]]
+  NoCheckFork = false
+  [repository.Base]
+    Owner = "golang"
+    Name = "go"
+    Branch = "master"
+  [repository.Fork]
+    Owner = "login"
+    Name = "go"
+    Branch = "master"
+  [repository.Marker]
+    NeedResolveConflicts = ""
+    ByBot = ""
