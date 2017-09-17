@@ -27,7 +27,7 @@ func (r Repo) String() string {
 	return fmt.Sprintf("%s/%s:%s", r.Owner, r.Name, r.Branch)
 }
 
-// Marker define labels.
+// Marker Define labels added by the bot.
 type Marker struct {
 	NeedResolveConflicts string
 	ByBot                string

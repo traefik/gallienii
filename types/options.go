@@ -11,9 +11,9 @@ type GenerateOptions struct {
 	GitHubToken string `long:"token" short:"t" description:"GitHub Token."`
 }
 
-// SyncOptions synchronizer command options.
+// SyncOptions Synchronizer command options.
 type SyncOptions struct {
-	GitHubToken   string `long:"token" short:"t" description:"GitHub Token."`
+	GitHubToken   string `long:"token" short:"t" description:"GitHub Token [required]."`
 	RulesFilePath string `long:"rules-path" description:"Path to the rules file."`
 	ServerMode    bool   `long:"server" description:"Server mode."`
 	ServerPort    int    `long:"port" description:"Server port."`

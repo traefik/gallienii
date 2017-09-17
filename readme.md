@@ -8,7 +8,9 @@ Keep forks synchronized by making PR on forks.
 
 ## Synchronize Forks
 
-You must defined which fork you wanted to synchronize in a TOML file.
+### Configuration
+
+You must define which fork you want to sync to a TOML file.
 See [the sample](/sample.toml).
 
 By default using `./gallienii.toml` file.
@@ -39,7 +41,17 @@ To override the configuration file path, you must use `--rules-path`.
     ByBot = "bot/upstream-sync"
 ```
 
-Help (`gallienii sync -h`):
+### Examples
+
+```bash
+gallienii sync -t mytoken
+```
+
+### Help
+
+```bash
+gallienii sync -h
+```
 
 ```
 Synchronize forks.
@@ -60,18 +72,20 @@ Flags:
 
 ## Generate Configuration File
 
-You generate a default configuration file from an GitHub organisation or a user or a simple sample.
+You can generate a default configuration file from an GitHub organisation or a user or just a simple sample.
 
 ```bash
 gallienii gen --sample
 ```
 
 ```bash
-gallienii gen --org="MyOrganisation"
+# the token is required only if you want detect your private fork.
+gallienii gen --org="MyOrganisation" -t mytoken
 ```
 
 ```bash
-gallienii gen --user="MyLogin"
+# the token is required only if you want detect your private fork.
+gallienii gen --user="MyLogin" -t mytoken
 ```
 
 Help (`gallienii gen -h`):

@@ -22,7 +22,7 @@ The repository [{{ .Owner }}/{{ .Name }}](https://github.com/{{ .Owner }}/{{ .Na
 :robot::speech_balloon: _Done with :heart: by :ant: [Myrmica Gallienii](https://github.com/containous/gallienii) :ant:_
 `
 
-// Process synchronize forks by making Pull Request.
+// Process Synchronize forks by making Pull Request.
 func Process(ctx context.Context, client *github.Client, configs *types.Configuration, dryRun bool, verbose bool) error {
 	for _, conf := range configs.Forks {
 		if !conf.Disable {
