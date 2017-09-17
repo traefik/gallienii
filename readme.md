@@ -5,6 +5,7 @@
 
 Keep forks synchronized by making PR on forks.
 
+
 ## Synchronize Forks
 
 You must defined which fork you wanted to synchronize in a TOML file.
@@ -111,3 +112,5 @@ Use "gallienii [command] --help" for more information about a command.
 Flags:
 -h, --help Print Help (this message) and exit
 ```
+
+![Myrmica Gallienii](http://www.antwiki.org/wiki/images/b/b6/Myrmica_gallienii_casent0172712_head_1.jpg)
