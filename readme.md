@@ -14,7 +14,7 @@ You must define which fork you want to sync to a TOML file.
 See [the sample](/sample.toml).
 
 By default using `./gallienii.toml` file.
-To override the configuration file path, you must use `--rules-path`.
+To override the configuration file path, you must use `--config-path`.
 
 ```toml
 [[repository]]
@@ -60,13 +60,13 @@ Usage: sync [--flag=flag_argument] [-f[flag_argument]] ...     set flag_argument
    or: sync [--flag[=true|false| ]] [-f[true|false| ]] ...     set true/false to boolean flag(s)
 
 Flags:
-    --dry-run    Dry run mode.                      (default "true")
-    --port       Server port.                       (default "80")
-    --rules-path Path to the rules file.            (default "./gallienii.toml")
-    --server     Server mode.                       (default "false")
--t, --token      GitHub Token.                      
-    --verbose    Verbose mode.                      (default "false")
--h, --help       Print Help (this message) and exit
+    --config-path Path to the configuration file.    (default "./gallienii.toml")
+    --dry-run     Dry run mode.                      (default "true")
+    --port        Server port.                       (default "80")
+    --server      Server mode.                       (default "false")
+-t, --token       GitHub Token [required].           
+    --verbose     Verbose mode.                      (default "false")
+-h, --help        Print Help (this message) and exit
 ```
 
 

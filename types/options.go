@@ -13,10 +13,10 @@ type GenerateOptions struct {
 
 // SyncOptions Synchronizer command options.
 type SyncOptions struct {
-	GitHubToken   string `long:"token" short:"t" description:"GitHub Token [required]."`
-	RulesFilePath string `long:"rules-path" description:"Path to the rules file."`
-	ServerMode    bool   `long:"server" description:"Server mode."`
-	ServerPort    int    `long:"port" description:"Server port."`
-	DryRun        bool   `long:"dry-run" description:"Dry run mode."`
-	Verbose       bool   `long:"verbose" description:"Verbose mode."`
+	GitHubToken    string `long:"token" short:"t" description:"GitHub Token [required]."`
+	ConfigFilePath string `long:"config-path" description:"Path to the configuration file."`
+	ServerMode     bool   `long:"server" description:"Server mode."`
+	ServerPort     int    `long:"port" description:"Server port."`
+	DryRun         bool   `long:"dry-run" description:"Dry run mode."`
+	Verbose        bool   `long:"verbose" description:"Verbose mode."`
 }

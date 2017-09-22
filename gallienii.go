@@ -40,9 +40,9 @@ func main() {
 	// Sync
 
 	syncOptions := &types.SyncOptions{
-		DryRun:        true,
-		RulesFilePath: "./gallienii.toml",
-		ServerPort:    80,
+		DryRun:         true,
+		ConfigFilePath: "./gallienii.toml",
+		ServerPort:     80,
 	}
 
 	syncCmd := &flaeg.Command{
@@ -97,13 +97,13 @@ func main() {
 func runSync(options *types.SyncOptions) func() error {
 	return func() error {
 
-		required(options.RulesFilePath, "rules-path")
+		required(options.ConfigFilePath, "config-path")
 
 		if options.DryRun {
 			log.Print("IMPORTANT: you are using the dry-run mode. Use `--dry-run=false` to disable this mode.")
 		}
 
-		configs, err := readConfiguration(options.RulesFilePath)
+		configs, err := readConfiguration(options.ConfigFilePath)
 		if err != nil {
 			return err
 		}
