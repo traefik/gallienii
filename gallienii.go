@@ -96,6 +96,10 @@ func runSync(options *types.SyncOptions) func() error {
 
 		required(options.ConfigFilePath, "config-path")
 
+		if len(options.GitHubToken) == 0 {
+			options.GitHubToken = os.Getenv("GITHUB_TOKEN")
+		}
+
 		if options.DryRun {
 			log.Print("IMPORTANT: you are using the dry-run mode. Use `--dry-run=false` to disable this mode.")
 		}
