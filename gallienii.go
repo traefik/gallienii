@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -59,9 +58,7 @@ func main() {
 
 	// Generate
 
-	generateOptions := &types.GenerateOptions{
-		Sample: true,
-	}
+	generateOptions := &types.GenerateOptions{}
 
 	generateCmd := &flaeg.Command{
 		Name:                  "gen",
@@ -105,7 +102,7 @@ func runSync(options *types.SyncOptions) func() error {
 
 		configs, err := readConfiguration(options.ConfigFilePath)
 		if err != nil {
-			return err
+			log.Fatal(err)
 		}
 
 		if options.Verbose {
@@ -120,7 +117,11 @@ func runSync(options *types.SyncOptions) func() error {
 		ctx := context.Background()
 		client := NewGitHubClient(ctx, options.GitHubToken)
 
-		return sync.Process(ctx, client, configs, options.DryRun, options.Verbose)
+		err = sync.Process(ctx, client, configs, options.DryRun, options.Verbose)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return nil
 	}
 }
 
@@ -143,20 +144,21 @@ func runGenerate(options *types.GenerateOptions) func() error {
 		if options.Sample {
 			err := generate.Sample("./sample.toml")
 			if err != nil {
-				return err
+				log.Fatal(err)
 			}
 		} else if options.User != "" {
 			err := generate.UserConfiguration(ctx, client, options.User, "./gallienii.toml")
 			if err != nil {
-				return err
+				log.Fatal(err)
 			}
 		} else if options.Org != "" {
+			log.Println("yo")
 			err := generate.OrganizationConfiguration(ctx, client, options.Org, "./gallienii.toml")
 			if err != nil {
-				return err
+				log.Fatal(err)
 			}
 		} else {
-			return errors.New("one option must be fill")
+			log.Fatal("one option must be fill")
 		}
 		return nil
 	}
