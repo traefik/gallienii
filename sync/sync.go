@@ -129,7 +129,7 @@ func createPullRequest(ctx context.Context, client *github.Client, fork types.Re
 		Head:                github.String(base.Owner + ":" + base.Branch),
 		Base:                github.String(fork.Branch),
 		Body:                github.String(msg.body),
-		MaintainerCanModify: github.Bool(true),
+		MaintainerCanModify: github.Bool(false),
 	}
 
 	if dryRun {

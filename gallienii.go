@@ -209,7 +209,7 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprint(w, "Scheluded.\n")
+	fmt.Fprint(w, "Myrmica gallienii: Scheluded.\n")
 }
 
 func required(field string, fieldName string) error {
