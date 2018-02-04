@@ -15,6 +15,7 @@ import (
 	"github.com/containous/gallienii/sync"
 	"github.com/containous/gallienii/types"
 	"github.com/google/go-github/github"
+	"github.com/ogier/pflag"
 	"golang.org/x/oauth2"
 )
 
@@ -88,14 +89,19 @@ func main() {
 	flag.AddCommand(versionCmd)
 
 	// Run command
-	flag.Run()
+	err := flag.Run()
+	if err != nil && err != pflag.ErrHelp {
+		log.Printf("Error: %v\n", err)
+	}
 }
 
 func runSync(options *types.SyncOptions) func() error {
 	return func() error {
 
-		required(options.ConfigFilePath, "config-path")
-
+		err := required(options.ConfigFilePath, "config-path")
+		if err != nil {
+			log.Fatal(err)
+		}
 		if len(options.GitHubToken) == 0 {
 			options.GitHubToken = os.Getenv("GITHUB_TOKEN")
 		}
