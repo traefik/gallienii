@@ -40,24 +40,38 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context","context/ctxhttp"]
+  packages = [
+    "context",
+    "context/ctxhttp"
+  ]
   revision = "8351a756f30f1297fe94bbf4b767ec589c6ea6d0"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/oauth2"
-  packages = [".","internal"]
+  packages = [
+    ".",
+    "internal"
+  ]
   revision = "13449ad91cb26cb47661c1b080790392170385fd"
 
 [[projects]]
   name = "google.golang.org/appengine"
-  packages = ["internal","internal/base","internal/datastore","internal/log","internal/remote_api","internal/urlfetch","urlfetch"]
+  packages = [
+    "internal",
+    "internal/base",
+    "internal/datastore",
+    "internal/log",
+    "internal/remote_api",
+    "internal/urlfetch",
+    "urlfetch"
+  ]
   revision = "150dc57a1b433e64154302bdc40b6bb8aefa313a"
   version = "v1.0.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "003764925b637ac9d4bf99ee0dcb222b300d6aa24a39b9b37504058cbc5eef95"
+  inputs-digest = "9f3ae089545f3aafcdd84a132f964ffa1fe43c2c1fb6c2753eb3f0b52fb16816"
   solver-name = "gps-cdcl"
   solver-version = 1
