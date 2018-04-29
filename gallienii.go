@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -91,17 +92,17 @@ func main() {
 	// Run command
 	err := flag.Run()
 	if err != nil && err != pflag.ErrHelp {
-		log.Printf("Error: %v\n", err)
+		log.Fatalf("Error: %v\n", err)
 	}
 }
 
 func runSync(options *types.SyncOptions) func() error {
 	return func() error {
-
 		err := required(options.ConfigFilePath, "config-path")
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
+
 		if len(options.GitHubToken) == 0 {
 			options.GitHubToken = os.Getenv("GITHUB_TOKEN")
 		}
@@ -112,7 +113,7 @@ func runSync(options *types.SyncOptions) func() error {
 
 		configs, err := readConfiguration(options.ConfigFilePath)
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 
 		if options.Verbose {
@@ -127,11 +128,7 @@ func runSync(options *types.SyncOptions) func() error {
 		ctx := context.Background()
 		client := NewGitHubClient(ctx, options.GitHubToken)
 
-		err = sync.Process(ctx, client, configs, options.DryRun, options.Verbose)
-		if err != nil {
-			log.Fatal(err)
-		}
-		return nil
+		return sync.Process(ctx, client, configs, options.DryRun, options.Verbose)
 	}
 }
 
@@ -154,21 +151,20 @@ func runGenerate(options *types.GenerateOptions) func() error {
 		if options.Sample {
 			err := generate.Sample("./sample.toml")
 			if err != nil {
-				log.Fatal(err)
+				return err
 			}
 		} else if options.User != "" {
 			err := generate.UserConfiguration(ctx, client, options.User, "./gallienii.toml")
 			if err != nil {
-				log.Fatal(err)
+				return err
 			}
 		} else if options.Org != "" {
-			log.Println("yo")
 			err := generate.OrganizationConfiguration(ctx, client, options.Org, "./gallienii.toml")
 			if err != nil {
-				log.Fatal(err)
+				return err
 			}
 		} else {
-			log.Fatal("one option must be fill")
+			return errors.New("one option must be fill")
 		}
 		return nil
 	}
@@ -201,7 +197,7 @@ func (s *server) ListenAndServe() error {
 func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		log.Printf("Invalid http method: %s", r.Method)
-		http.Error(w, "405 Method not allowed", http.StatusMethodNotAllowed)
+		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -220,7 +216,7 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func required(field string, fieldName string) error {
 	if len(field) == 0 {
-		log.Fatalf("%s is mandatory.", fieldName)
+		return fmt.Errorf("%s is mandatory", fieldName)
 	}
 	return nil
 }
