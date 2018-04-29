@@ -63,11 +63,11 @@ func main() {
 	generateOptions := &types.GenerateOptions{}
 
 	generateCmd := &flaeg.Command{
-		Name:                  "gen",
-		Description:           "Generate configuration file.",
-		Config:                generateOptions,
 		DefaultPointersConfig: &types.GenerateOptions{},
-		Run: runGenerate(generateOptions),
+		Description:           "Generate configuration file.",
+		Name:                  "gen",
+		Config:                generateOptions,
+		Run:                   runGenerate(generateOptions),
 	}
 
 	flag.AddCommand(generateCmd)
