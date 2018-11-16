@@ -148,22 +148,23 @@ func runGenerate(options *types.GenerateOptions) func() error {
 		ctx := context.Background()
 		client := NewGitHubClient(ctx, options.GitHubToken)
 
-		if options.Sample {
+		switch {
+		case options.Sample:
 			err := generate.Sample("./sample.toml")
 			if err != nil {
 				return err
 			}
-		} else if options.User != "" {
+		case options.User != "":
 			err := generate.UserConfiguration(ctx, client, options.User, "./gallienii.toml")
 			if err != nil {
 				return err
 			}
-		} else if options.Org != "" {
+		case options.Org != "":
 			err := generate.OrganizationConfiguration(ctx, client, options.Org, "./gallienii.toml")
 			if err != nil {
 				return err
 			}
-		} else {
+		default:
 			return errors.New("one option must be fill")
 		}
 		return nil
