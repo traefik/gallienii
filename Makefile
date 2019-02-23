@@ -7,8 +7,6 @@ SHA := $(shell git rev-parse --short HEAD)
 VERSION := $(if $(TAG_NAME),$(TAG_NAME),$(SHA))
 BUILD_DATE := $(shell date -u '+%Y-%m-%d_%I:%M:%S%p')
 
-VERSION_PACKAGE=github.com/containous/structor/meta
-
 default: clean checks test build
 
 test: clean
