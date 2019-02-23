@@ -1,10 +1,10 @@
 # Myrmica Gallienii - Keep Forks Synchronized
 
+[![GitHub release](https://img.shields.io/github/release/containous/gallienii.svg)](https://github.com/containous/gallienii/releases/latest)
 [![Build Status](https://travis-ci.org/containous/gallienii.svg?branch=master)](https://travis-ci.org/containous/gallienii)
 [![Docker Build Status](https://img.shields.io/docker/build/containous/gallienii.svg)](https://hub.docker.com/r/containous/gallienii/builds/)
 
 Keep forks synchronized by making PR on forks.
-
 
 ## Synchronize Forks
 
@@ -53,7 +53,7 @@ gallienii sync -t mytoken
 gallienii sync -h
 ```
 
-```
+```yaml
 Synchronize forks.
 
 Usage: sync [--flag=flag_argument] [-f[flag_argument]] ...     set flag_argument to flag(s)
@@ -90,7 +90,7 @@ gallienii gen --user="MyLogin" -t mytoken
 
 Help (`gallienii gen -h`):
 
-```
+```yaml
 Generate configuration file.
 
 Usage: gen [--flag=flag_argument] [-f[flag_argument]] ...     set flag_argument to flag(s)
@@ -111,7 +111,7 @@ Flags:
 gallienii -h
 ```
 
-```
+```yaml
 Myrmica gallienii: Keep forks synchronized.
 
 Usage: gallienii [--flag=flag_argument] [-f[flag_argument]] ...     set flag_argument to flag(s)
@@ -126,5 +126,7 @@ Use "gallienii [command] --help" for more information about a command.
 Flags:
 -h, --help Print Help (this message) and exit
 ```
+
+## What does Myrmica Gallienii mean?
 
 ![Myrmica Gallienii](http://www.antwiki.org/wiki/images/b/b6/Myrmica_gallienii_casent0172712_head_1.jpg)

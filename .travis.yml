@@ -17,17 +17,15 @@ before_install:
   - chmod +x $GOPATH/bin/dep
 
   # Install linters and misspell
-  - curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | bash -s -- -b $GOPATH/bin v1.12.2
+  - curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | bash -s -- -b $GOPATH/bin v1.15.0
   - golangci-lint --version
 
 install: make dependencies
 
 deploy:
-  - provider: releases
-    api_key: ${GITHUB_TOKEN}
-    file: dist/gallienii*
+  - provider: script
     skip_cleanup: true
-    overwrite: true
-    file_glob: true
+    script: curl -sL https://git.io/goreleaser | bash
     on:
       tags: true
+      condition: $TRAVIS_GO_VERSION =~ ^1\.x$

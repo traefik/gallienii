@@ -36,7 +36,6 @@ func Process(ctx context.Context, client *github.Client, configs *types.Configur
 }
 
 func processOneRepository(ctx context.Context, client *github.Client, forkConfig types.ForkConfiguration, dryRun bool, verbose bool) error {
-
 	if !forkConfig.NoCheckFork {
 		err := checkFork(ctx, client, forkConfig.Fork)
 		if err != nil {
@@ -93,7 +92,7 @@ func checkFork(ctx context.Context, client *github.Client, fork types.Repo) erro
 }
 
 func addLabels(ctx context.Context, client *github.Client, pr *github.PullRequest, marker types.Marker) error {
-	labels := []string{}
+	var labels []string
 
 	if !pr.GetMergeable() && marker.NeedResolveConflicts != "" {
 		labels = append(labels, marker.NeedResolveConflicts)

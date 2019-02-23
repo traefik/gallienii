@@ -20,7 +20,7 @@ func UserConfiguration(ctx context.Context, client *github.Client, user string, 
 		return err
 	}
 
-	configs := []types.ForkConfiguration{}
+	var configs []types.ForkConfiguration
 
 	for _, rep := range repos {
 

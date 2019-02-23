@@ -12,7 +12,6 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/containous/flaeg"
 	"github.com/containous/gallienii/generate"
-	"github.com/containous/gallienii/meta"
 	"github.com/containous/gallienii/sync"
 	"github.com/containous/gallienii/types"
 	"github.com/google/go-github/github"
@@ -21,19 +20,13 @@ import (
 )
 
 func main() {
-
 	// Root
 
-	emptyConfig := &types.NoOption{}
 	rootCmd := &flaeg.Command{
 		Name:                  "gallienii",
 		Description:           `Myrmica gallienii: Keep forks synchronized.`,
-		Config:                emptyConfig,
+		Config:                &types.NoOption{},
 		DefaultPointersConfig: &types.NoOption{},
-		Run: func() error {
-			// no-op
-			return nil
-		},
 	}
 
 	flag := flaeg.New(rootCmd, os.Args[1:])
@@ -60,34 +53,35 @@ func main() {
 
 	// Generate
 
-	generateOptions := &types.GenerateOptions{}
-
 	generateCmd := &flaeg.Command{
 		DefaultPointersConfig: &types.GenerateOptions{},
 		Description:           "Generate configuration file.",
 		Name:                  "gen",
-		Config:                generateOptions,
-		Run:                   runGenerate(generateOptions),
+		Config:                &types.GenerateOptions{},
+		Run:                   runGenerate(&types.GenerateOptions{}),
 	}
 
 	flag.AddCommand(generateCmd)
 
 	// version
 
-	versionOptions := &types.NoOption{}
-
 	versionCmd := &flaeg.Command{
 		Name:                  "version",
 		Description:           "Display the version.",
-		Config:                versionOptions,
+		Config:                &types.NoOption{},
 		DefaultPointersConfig: &types.NoOption{},
 		Run: func() error {
-			meta.DisplayVersion()
+			displayVersion()
 			return nil
 		},
 	}
 
 	flag.AddCommand(versionCmd)
+
+	// Print help when the command is running without any parameters.
+	rootCmd.Run = func() error {
+		return flaeg.LoadWithCommand(rootCmd, []string{"-h"}, nil, []*flaeg.Command{rootCmd, syncCmd, generateCmd, versionCmd})
+	}
 
 	// Run command
 	err := flag.Run()
@@ -134,8 +128,8 @@ func runSync(options *types.SyncOptions) func() error {
 
 func readConfiguration(path string) (*types.Configuration, error) {
 	config := &types.Configuration{}
-	_, err := toml.DecodeFile(path, config)
 
+	_, err := toml.DecodeFile(path, config)
 	if err != nil {
 		return nil, err
 	}
@@ -173,17 +167,15 @@ func runGenerate(options *types.GenerateOptions) func() error {
 
 // NewGitHubClient create a new GitHub client
 func NewGitHubClient(ctx context.Context, token string) *github.Client {
-	var client *github.Client
 	if len(token) == 0 {
-		client = github.NewClient(nil)
-	} else {
-		ts := oauth2.StaticTokenSource(
-			&oauth2.Token{AccessToken: token},
-		)
-		tc := oauth2.NewClient(ctx, ts)
-		client = github.NewClient(tc)
+		return github.NewClient(nil)
 	}
-	return client
+
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: token},
+	)
+	tc := oauth2.NewClient(ctx, ts)
+	return github.NewClient(tc)
 }
 
 type server struct {

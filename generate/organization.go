@@ -11,7 +11,6 @@ import (
 
 // OrganizationConfiguration generate a default configuration file for an organization.
 func OrganizationConfiguration(ctx context.Context, client *github.Client, organization string, path string) error {
-
 	opt := &github.RepositoryListByOrgOptions{
 		Type: "forks",
 	}
@@ -21,7 +20,7 @@ func OrganizationConfiguration(ctx context.Context, client *github.Client, organ
 		return err
 	}
 
-	configs := []types.ForkConfiguration{}
+	var configs []types.ForkConfiguration
 
 	for _, rep := range repos {
 

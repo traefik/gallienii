@@ -36,8 +36,10 @@
 [issues]
   exclude-use-default = false
   max-per-linter = 0
-  max-same = 0
-  exclude = [
-    "`(Version|BuildDate)` is a global variable", # meta/version.go
-  ]
+  max-same-issues = 0
+  exclude = []
+  [[issues.exclude-rules]]
+    path = "version.go"
+    text = "`(version|date|commit)` is a global variable"
+
 

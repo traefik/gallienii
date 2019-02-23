@@ -2,4 +2,5 @@
 vendor/
 gallienii*.toml
 dist/
-unsecure
+unsecure/
+gallienii
