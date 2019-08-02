@@ -8,7 +8,7 @@ import (
 	"text/template"
 
 	"github.com/containous/gallienii/types"
-	"github.com/google/go-github/github"
+	"github.com/google/go-github/v27/github"
 )
 
 type message struct {

@@ -6,7 +6,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/containous/gallienii/types"
-	"github.com/google/go-github/github"
+	"github.com/google/go-github/v27/github"
 )
 
 // UserConfiguration generate a default configuration file for a user.

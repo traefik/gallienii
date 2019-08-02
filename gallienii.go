@@ -14,7 +14,7 @@ import (
 	"github.com/containous/gallienii/generate"
 	"github.com/containous/gallienii/sync"
 	"github.com/containous/gallienii/types"
-	"github.com/google/go-github/github"
+	"github.com/google/go-github/v27/github"
 	"github.com/ogier/pflag"
 	"golang.org/x/oauth2"
 )
