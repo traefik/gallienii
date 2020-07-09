@@ -1,18 +1,23 @@
 language: go
 
-go:
-  - 1.11.x
-  - 1.x
-
-sudo: false
-
 notifications:
   email:
     on_success: never
     on_failure: change
 
+jobs:
+  fast_finish: true
+  include:
+    - go: 1.13.x
+      env: STABLE=true
+    - go: 1.x
+    - go: tip
+  allow_failures:
+    - go: tip
+
 env:
-  - GO111MODULE=on
+  global:
+    - GO111MODULE=on
 
 before_install:
   # Install linters and misspell
