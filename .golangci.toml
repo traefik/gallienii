@@ -22,6 +22,10 @@
   [linters-settings.misspell]
     locale = "US"
 
+  [linters-settings.funlen]
+    lines = 70 # default 60
+    statements = 40 # default 40
+
 [linters]
   enable-all = true
   disable = [
@@ -32,13 +36,18 @@
     "prealloc",
     "scopelint",
     "bodyclose",
+    "goerr113",
+    "gomnd",
+    "wsl",
   ]
 
 [issues]
   exclude-use-default = false
   max-per-linter = 0
   max-same-issues = 0
-  exclude = []
+  exclude = [
+    "ST1000: at least one file in a package should have a package comment",
+  ]
   [[issues.exclude-rules]]
     path = "version.go"
     text = "`(version|date|commit)` is a global variable"

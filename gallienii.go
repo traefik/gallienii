@@ -165,7 +165,7 @@ func runGenerate(options *types.GenerateOptions) func() error {
 	}
 }
 
-// NewGitHubClient create a new GitHub client
+// NewGitHubClient create a new GitHub client.
 func NewGitHubClient(ctx context.Context, token string) *github.Client {
 	if len(token) == 0 {
 		return github.NewClient(nil)
@@ -197,7 +197,6 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
 	client := NewGitHubClient(ctx, s.options.GitHubToken)
 	err := sync.Process(ctx, client, s.configs, s.options.DryRun, s.options.Verbose)
-
 	if err != nil {
 		log.Printf("Sync error: %v", err)
 		http.Error(w, "Sync error.", http.StatusInternalServerError)
@@ -207,7 +206,7 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Myrmica gallienii: Scheluded.\n")
 }
 
-func required(field string, fieldName string) error {
+func required(field, fieldName string) error {
 	if len(field) == 0 {
 		return fmt.Errorf("%s is mandatory", fieldName)
 	}

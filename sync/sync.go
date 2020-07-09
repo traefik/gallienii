@@ -23,7 +23,7 @@ The repository [{{ .Owner }}/{{ .Name }}](https://github.com/{{ .Owner }}/{{ .Na
 `
 
 // Process Synchronize forks by making Pull Request.
-func Process(ctx context.Context, client *github.Client, configs *types.Configuration, dryRun bool, verbose bool) error {
+func Process(ctx context.Context, client *github.Client, configs *types.Configuration, dryRun, verbose bool) error {
 	for _, conf := range configs.Forks {
 		if !conf.Disable {
 			err := processOneRepository(ctx, client, conf, dryRun, verbose)
@@ -35,7 +35,7 @@ func Process(ctx context.Context, client *github.Client, configs *types.Configur
 	return nil
 }
 
-func processOneRepository(ctx context.Context, client *github.Client, forkConfig types.ForkConfiguration, dryRun bool, verbose bool) error {
+func processOneRepository(ctx context.Context, client *github.Client, forkConfig types.ForkConfiguration, dryRun, verbose bool) error {
 	if !forkConfig.NoCheckFork {
 		err := checkFork(ctx, client, forkConfig.Fork)
 		if err != nil {
@@ -122,7 +122,7 @@ func makeMessage(base types.Repo) message {
 	}
 }
 
-func createPullRequest(ctx context.Context, client *github.Client, fork types.Repo, base types.Repo, msg message, dryRun bool) (*github.PullRequest, error) {
+func createPullRequest(ctx context.Context, client *github.Client, fork, base types.Repo, msg message, dryRun bool) (*github.PullRequest, error) {
 	newPR := &github.NewPullRequest{
 		Title:               github.String(msg.title),
 		Head:                github.String(base.Owner + ":" + base.Branch),
@@ -140,7 +140,7 @@ func createPullRequest(ctx context.Context, client *github.Client, fork types.Re
 
 	pr, _, err := client.PullRequests.Create(ctx, fork.Owner, fork.Name, newPR)
 	if err != nil {
-		return nil, fmt.Errorf("unable to create the PR: %v", err)
+		return nil, fmt.Errorf("unable to create the PR: %w", err)
 	}
 
 	return pr, nil

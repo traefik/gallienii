@@ -10,7 +10,7 @@ import (
 )
 
 // UserConfiguration generate a default configuration file for a user.
-func UserConfiguration(ctx context.Context, client *github.Client, user string, path string) error {
+func UserConfiguration(ctx context.Context, client *github.Client, user, path string) error {
 	opt := &github.RepositoryListOptions{
 		Type: "forks",
 	}
@@ -23,7 +23,6 @@ func UserConfiguration(ctx context.Context, client *github.Client, user string, 
 	var configs []types.ForkConfiguration
 
 	for _, rep := range repos {
-
 		repo, _, errRepo := client.Repositories.Get(ctx, rep.Owner.GetLogin(), rep.GetName())
 		if errRepo != nil {
 			return errRepo
