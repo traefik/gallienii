@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/BurntSushi/toml"
-	"github.com/containous/gallienii/types"
+	"github.com/traefik/gallienii/types"
 )
 
 // Sample generate a sample configuration file.

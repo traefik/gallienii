@@ -4,7 +4,7 @@ RUN apk --update upgrade \
 && apk --no-cache --no-progress add git make \
 && rm -rf /var/cache/apk/*
 
-WORKDIR /go/src/github.com/containous/gallienii
+WORKDIR /go/gallienii
 COPY . .
 
 RUN go mod download
@@ -15,6 +15,6 @@ RUN apk --update upgrade \
     && apk --no-cache --no-progress add ca-certificates \
     && rm -rf /var/cache/apk/*
 
-COPY --from=builder /go/src/github.com/containous/gallienii/gallienii /usr/bin/gallienii
+COPY --from=builder /go/gallienii/gallienii /usr/bin/gallienii
 
 ENTRYPOINT ["/usr/bin/gallienii"]

@@ -7,8 +7,8 @@ import (
 	"log"
 	"text/template"
 
-	"github.com/containous/gallienii/types"
 	"github.com/google/go-github/v27/github"
+	"github.com/traefik/gallienii/types"
 )
 
 type message struct {
@@ -19,7 +19,7 @@ type message struct {
 const bodyTemplate = `
 The repository [{{ .Owner }}/{{ .Name }}](https://github.com/{{ .Owner }}/{{ .Name }}/tree/{{ .Branch}}) has some new changes that aren't in this fork.
 
-:robot::speech_balloon: _Done with :heart: by :ant: [Myrmica Gallienii](https://github.com/containous/gallienii) :ant:_
+:robot::speech_balloon: _Done with :heart: by :ant: [Myrmica Gallienii](https://github.com/traefik/gallienii) :ant:_
 `
 
 // Process Synchronize forks by making Pull Request.
