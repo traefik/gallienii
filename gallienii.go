@@ -11,11 +11,11 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/containous/flaeg"
-	"github.com/containous/gallienii/generate"
-	"github.com/containous/gallienii/sync"
-	"github.com/containous/gallienii/types"
 	"github.com/google/go-github/v27/github"
 	"github.com/ogier/pflag"
+	"github.com/traefik/gallienii/generate"
+	"github.com/traefik/gallienii/sync"
+	"github.com/traefik/gallienii/types"
 	"golang.org/x/oauth2"
 )
 

@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/BurntSushi/toml"
-	"github.com/containous/gallienii/types"
 	"github.com/google/go-github/v27/github"
+	"github.com/traefik/gallienii/types"
 )
 
 // UserConfiguration generate a default configuration file for a user.
