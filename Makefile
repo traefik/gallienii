@@ -1,4 +1,4 @@
-.PHONY: default fmt clean checks test build
+.PHONY: default clean checks test build
 
 export GO111MODULE=on
 

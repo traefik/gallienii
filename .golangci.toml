@@ -36,10 +36,17 @@
     "prealloc",
     "scopelint",
     "bodyclose",
-    "goerr113",
-    "gomnd",
     "wsl",
     "nlreturn",
+    "gomnd",
+    "testpackage",
+    "paralleltest",
+    "tparallel",
+    "goerr113",
+    "wrapcheck",
+    "exhaustive",
+    "exhaustivestruct",
+    "noctx",
   ]
 
 [issues]
@@ -51,6 +58,6 @@
   ]
   [[issues.exclude-rules]]
     path = "version.go"
-    text = "`(version|date|commit)` is a global variable"
+    text = "(version|date|commit) is a global variable"
 
 

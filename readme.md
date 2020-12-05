@@ -1,7 +1,7 @@
 # Myrmica Gallienii - Keep Forks Synchronized
 
 [![GitHub release](https://img.shields.io/github/release/traefik/gallienii.svg)](https://github.com/traefik/gallienii/releases/latest)
-[![Build Status](https://travis-ci.com/traefik/gallienii.svg?branch=master)](https://travis-ci.com/traefik/gallienii)
+[![Build Status](https://github.com/traefik/gallienii/workflows/Main/badge.svg?branch=master)](https://github.com/traefik/gallienii/actions)
 [![Docker Build Status](https://img.shields.io/docker/build/traefik/gallienii.svg)](https://hub.docker.com/r/traefik/gallienii/builds/)
 
 Keep forks synchronized by making PR on forks.
