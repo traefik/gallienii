@@ -97,7 +97,7 @@ func runSync(options *types.SyncOptions) func() error {
 			return err
 		}
 
-		if len(options.GitHubToken) == 0 {
+		if options.GitHubToken == "" {
 			options.GitHubToken = os.Getenv("GITHUB_TOKEN")
 		}
 
@@ -167,7 +167,7 @@ func runGenerate(options *types.GenerateOptions) func() error {
 
 // NewGitHubClient create a new GitHub client.
 func NewGitHubClient(ctx context.Context, token string) *github.Client {
-	if len(token) == 0 {
+	if token == "" {
 		return github.NewClient(nil)
 	}
 
@@ -207,7 +207,7 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func required(field, fieldName string) error {
-	if len(field) == 0 {
+	if field == "" {
 		return fmt.Errorf("%s is mandatory", fieldName)
 	}
 	return nil
